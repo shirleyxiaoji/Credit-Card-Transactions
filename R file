@@ -1,0 +1,36 @@
+data <- read_csv("C:/Users/xiaoji/Downloads/transactions.csv")
+info <- read_csv("C:/Users/xiaoji/Downloads/cc_info.csv")
+
+head(data)
+str(data)
+summary(data)
+
+#A few quick observations:
+#credit card obviously has 16 numbers in total except for max card number looking like having  17 digits
+#date fell between 31st July, 2015 and 30th Oct, 2015. So three-month maturity data.
+#mean transaction dollar amount is $86, majority of spendings were below $100. Need to look into min 0.01 and max amounts 999.
+
+
+head(info)
+str(info)
+summary(info)
+
+
+#Two observations:
+#there is one wrong credit card number with 17 digits
+#average credit card limit is around $12000, lowest $2000 and highest $55000
+
+#Let's investigate the wrong credit card number
+
+subset(info, credit_card ==  max(info$credit_card))
+max(info$credit_card) <= 10^17
+
+#false alarm. all credit card number are normal.
+
+#Let's investigate the min transaction dollar amount
+mintran = subset(data, transaction_dollar_amount == 0.01)
+sort(unique(mintran$credit_card))
+
+# 44 different credit cards have one transaction of min dollar amount $0.01
+
+

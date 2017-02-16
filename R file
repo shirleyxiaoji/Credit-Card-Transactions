@@ -25,7 +25,7 @@ summary(info)
 subset(info, credit_card ==  max(info$credit_card))
 max(info$credit_card) <= 10^17
 
-#false alarm. all credit card number are normal.
+#false alarm. max credit card number is normal and all its events seem fine for location and  transaction amount.
 
 #Let's investigate the min transaction dollar amount
 mintran = subset(data, transaction_dollar_amount == 0.01)
